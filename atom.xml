@@ -15,13 +15,10 @@
         <link rel="alternate" href="http://mofianger.github.io/Sharing/how-to-build-your-own-blog/"/>
         <content type="html">&lt;p&gt;介绍如何使用 hexo 搭建博客，并部署到 github.io 上&lt;/p&gt;
 &lt;p&gt;于 BIT 睿信书院学生科技学会学术部分享&lt;/p&gt;
+&lt;p&gt;如果以下 pdf 预览不能正常加载，戳&lt;a href=&#34;/pdf/how-to-build-your-own-blog.pdf&#34;&gt;这里&lt;/a&gt;下载&lt;/p&gt;
 &lt;p&gt;
-
-	&lt;div class=&#34;row&#34;&gt;
-    &lt;embed src=&#34;file.pdf&#34; width=&#34;100%&#34; height=&#34;550&#34; type=&#34;application/pdf&#34;&gt;
-	&lt;/div&gt;
-
-
+&lt;iframe src=&#34;/pdfjs/web/viewer.html?file=/pdf/how-to-build-your-own-blog.pdf&#34; style=&#39;width:100%;height:800px&#39;&gt;
+&lt;/iframe&gt;
 &lt;/p&gt;
 </content>
         <category term="Sharing" scheme="http://mofianger.github.io/categories/Sharing/" />

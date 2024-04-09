@@ -11,7 +11,7 @@
             "url": "http://mofianger.github.io/Sharing/how-to-build-your-own-blog/",
             "title": "How to build your own blog",
             "date_published": "2024-04-09T03:17:34.874Z",
-            "content_html": "<p>介绍如何使用 hexo 搭建博客，并部署到 github.io 上</p>\n<p>于 BIT 睿信书院学生科技学会学术部分享</p>\n<p>\n\n\t<div class=\"row\">\n    <embed src=\"file.pdf\" width=\"100%\" height=\"550\" type=\"application/pdf\">\n\t</div>\n\n\n</p>\n",
+            "content_html": "<p>介绍如何使用 hexo 搭建博客，并部署到 github.io 上</p>\n<p>于 BIT 睿信书院学生科技学会学术部分享</p>\n<p>如果以下 pdf 预览不能正常加载，戳<a href=\"/pdf/how-to-build-your-own-blog.pdf\">这里</a>下载</p>\n<p>\n<iframe src=\"/pdfjs/web/viewer.html?file=/pdf/how-to-build-your-own-blog.pdf\" style='width:100%;height:800px'>\n</iframe>\n</p>\n",
             "tags": [
                 "Sharing"
             ]
