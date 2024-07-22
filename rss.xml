@@ -13,10 +13,10 @@
         <pubDate>Tue, 09 Apr 2024 11:17:34 +0800</pubDate>
         <lastBuildDate>Tue, 09 Apr 2024 11:17:34 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://mofianger.github.io/Sharing/how-to-build-your-own-blog/</guid>
+            <guid isPermalink="true">http://mofianger.github.io/Tech/how-to-build-your-own-blog/</guid>
             <title>How to build your own blog</title>
-            <link>http://mofianger.github.io/Sharing/how-to-build-your-own-blog/</link>
-            <category term="Sharing" scheme="http://mofianger.github.io/categories/Sharing/" />
+            <link>http://mofianger.github.io/Tech/how-to-build-your-own-blog/</link>
+            <category term="Tech" scheme="http://mofianger.github.io/categories/Tech/" />
             <pubDate>Tue, 09 Apr 2024 11:17:34 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;介绍如何使用 hexo 搭建博客，并部署到 github.io 上&lt;/p&gt;
 &lt;p&gt;于 BIT 睿信书院学生科技学会学术部分享&lt;/p&gt;
@@ -65,48 +65,6 @@
 &lt;h2 id=&#34;synapses&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#synapses&#34;&gt;#&lt;/a&gt; Synapses&lt;/h2&gt;
 &lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-3/image-20240323194112421.png&#34; class=&#34;&#34; title=&#34;image-20240323194112421&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-3/image-20240323195522037.png&#34; class=&#34;&#34; title=&#34;image-20240323195522037&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">http://mofianger.github.io/Neuroscience/lecture-4/</guid>
-            <title>Lecture 4</title>
-            <link>http://mofianger.github.io/Neuroscience/lecture-4/</link>
-            <category term="Neuroscience" scheme="http://mofianger.github.io/categories/Neuroscience/" />
-            <pubDate>Mon, 08 Apr 2024 10:08:56 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330180622623.png&#34; class=&#34;&#34; title=&#34;image-20240330180622623&#34;&gt;&lt;/p&gt;
-&lt;p&gt;transporter: 回收递质&lt;/p&gt;
-&lt;p&gt;Ca2+ channel: voltage-gated Ca2 + 内流，促使突触小泡与膜融合，释放递质&lt;/p&gt;
-&lt;p&gt;receptor: 两种类型&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330181121479.png&#34; class=&#34;&#34; title=&#34;image-20240330181121479&#34;&gt;&lt;/p&gt;
-&lt;p&gt;EPSP: 兴奋性突触后电位&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330185753835.png&#34; class=&#34;&#34; title=&#34;image-20240330185753835&#34;&gt;&lt;/p&gt;
-&lt;p&gt;短期的神经可塑性&lt;/p&gt;
-&lt;p&gt;重复的刺激会改变释放的概率&lt;/p&gt;
-&lt;p&gt;两种情况：抑制 - 促进&lt;/p&gt;
-&lt;h2 id=&#34;mechanisms-of-short-term-synaptic-plasticity&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mechanisms-of-short-term-synaptic-plasticity&#34;&gt;#&lt;/a&gt; Mechanisms of short term synaptic plasticity&lt;/h2&gt;
-&lt;h3 id=&#34;depression&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#depression&#34;&gt;#&lt;/a&gt; Depression&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;储存的囊泡的消耗&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330190601709.png&#34; class=&#34;&#34; title=&#34;image-20240330190601709&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;receptor inactivated&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191047821.png&#34; class=&#34;&#34; title=&#34;image-20240330191047821&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;facilitation&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#facilitation&#34;&gt;#&lt;/a&gt; Facilitation&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;缓冲剂 (buffer) 的抵消，与 Ca2 + 结合？&lt;/li&gt;
-&lt;li&gt;缓冲剂饱和后，Ca2 + 正常促使囊泡与膜融合&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191038235.png&#34; class=&#34;&#34; title=&#34;image-20240330191038235&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191335231.png&#34; class=&#34;&#34; title=&#34;image-20240330191335231&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;quantal-transmission-summary&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quantal-transmission-summary&#34;&gt;#&lt;/a&gt; Quantal transmission - summary&lt;/h2&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191551142.png&#34; class=&#34;&#34; title=&#34;image-20240330191551142&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191738544.png&#34; class=&#34;&#34; title=&#34;image-20240330191738544&#34;&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330193306815.png&#34; class=&#34;&#34; title=&#34;image-20240330193306815&#34;&gt;&lt;/p&gt;
-&lt;p&gt;kills excitation efficiently&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330193621695.png&#34; class=&#34;&#34; title=&#34;image-20240330193621695&#34;&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -169,6 +127,48 @@
 &lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-5/image-20240406190035718.png&#34; class=&#34;&#34; title=&#34;image-20240406190035718&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-5/image-20240406190121581.png&#34; class=&#34;&#34; title=&#34;image-20240406190121581&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-5/image-20240406190245963.png&#34; class=&#34;&#34; title=&#34;image-20240406190245963&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://mofianger.github.io/Neuroscience/lecture-4/</guid>
+            <title>Lecture 4</title>
+            <link>http://mofianger.github.io/Neuroscience/lecture-4/</link>
+            <category term="Neuroscience" scheme="http://mofianger.github.io/categories/Neuroscience/" />
+            <pubDate>Mon, 08 Apr 2024 10:08:56 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330180622623.png&#34; class=&#34;&#34; title=&#34;image-20240330180622623&#34;&gt;&lt;/p&gt;
+&lt;p&gt;transporter: 回收递质&lt;/p&gt;
+&lt;p&gt;Ca2+ channel: voltage-gated Ca2 + 内流，促使突触小泡与膜融合，释放递质&lt;/p&gt;
+&lt;p&gt;receptor: 两种类型&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330181121479.png&#34; class=&#34;&#34; title=&#34;image-20240330181121479&#34;&gt;&lt;/p&gt;
+&lt;p&gt;EPSP: 兴奋性突触后电位&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330185753835.png&#34; class=&#34;&#34; title=&#34;image-20240330185753835&#34;&gt;&lt;/p&gt;
+&lt;p&gt;短期的神经可塑性&lt;/p&gt;
+&lt;p&gt;重复的刺激会改变释放的概率&lt;/p&gt;
+&lt;p&gt;两种情况：抑制 - 促进&lt;/p&gt;
+&lt;h2 id=&#34;mechanisms-of-short-term-synaptic-plasticity&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mechanisms-of-short-term-synaptic-plasticity&#34;&gt;#&lt;/a&gt; Mechanisms of short term synaptic plasticity&lt;/h2&gt;
+&lt;h3 id=&#34;depression&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#depression&#34;&gt;#&lt;/a&gt; Depression&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;储存的囊泡的消耗&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330190601709.png&#34; class=&#34;&#34; title=&#34;image-20240330190601709&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;receptor inactivated&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191047821.png&#34; class=&#34;&#34; title=&#34;image-20240330191047821&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;facilitation&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#facilitation&#34;&gt;#&lt;/a&gt; Facilitation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;缓冲剂 (buffer) 的抵消，与 Ca2 + 结合？&lt;/li&gt;
+&lt;li&gt;缓冲剂饱和后，Ca2 + 正常促使囊泡与膜融合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191038235.png&#34; class=&#34;&#34; title=&#34;image-20240330191038235&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191335231.png&#34; class=&#34;&#34; title=&#34;image-20240330191335231&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;quantal-transmission-summary&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quantal-transmission-summary&#34;&gt;#&lt;/a&gt; Quantal transmission - summary&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191551142.png&#34; class=&#34;&#34; title=&#34;image-20240330191551142&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330191738544.png&#34; class=&#34;&#34; title=&#34;image-20240330191738544&#34;&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330193306815.png&#34; class=&#34;&#34; title=&#34;image-20240330193306815&#34;&gt;&lt;/p&gt;
+&lt;p&gt;kills excitation efficiently&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Neuroscience/lecture-4/image-20240330193621695.png&#34; class=&#34;&#34; title=&#34;image-20240330193621695&#34;&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
