@@ -10,8 +10,215 @@
         </author>
         <description></description>
         <language>en</language>
-        <pubDate>Fri, 26 Jul 2024 22:21:36 +0800</pubDate>
-        <lastBuildDate>Fri, 26 Jul 2024 22:21:36 +0800</lastBuildDate>
+        <pubDate>Wed, 07 Aug 2024 12:32:54 +0800</pubDate>
+        <lastBuildDate>Wed, 07 Aug 2024 12:32:54 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://mofianger.github.io/Machine-Learning/CNN/lenet-be251f896e73/</guid>
+            <title>LeNet</title>
+            <link>http://mofianger.github.io/Machine-Learning/CNN/lenet-be251f896e73/</link>
+            <category term="Machine Learning" scheme="http://mofianger.github.io/categories/Machine-Learning/" />
+            <category term="CNN" scheme="http://mofianger.github.io/categories/Machine-Learning/CNN/" />
+            <pubDate>Wed, 07 Aug 2024 12:32:54 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;lenet&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lenet&#34;&gt;#&lt;/a&gt; LeNet&lt;/h1&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/lenet.svg&#34; class=&#34;&#34; title=&#34;lenet&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Conv2d output shape: 	 torch.Size([1, 6, 28, 28])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Sigmoid output shape: 	 torch.Size([1, 6, 28, 28])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;AvgPool2d output shape: 	 torch.Size([1, 6, 14, 14])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Conv2d output shape: 	 torch.Size([1, 16, 10, 10])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Sigmoid output shape: 	 torch.Size([1, 16, 10, 10])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;AvgPool2d output shape: 	 torch.Size([1, 16, 5, 5])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Flatten output shape: 	 torch.Size([1, 400])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Linear output shape: 	 torch.Size([1, 120])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Sigmoid output shape: 	 torch.Size([1, 120])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Linear output shape: 	 torch.Size([1, 84])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Sigmoid output shape: 	 torch.Size([1, 84])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Linear output shape: 	 torch.Size([1, 10])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&#34;数据集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据集&#34;&gt;#&lt;/a&gt; 数据集&lt;/h1&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=b, num_workers=n)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&#34;效率评估&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#效率评估&#34;&gt;#&lt;/a&gt; 效率评估&lt;/h1&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;learning rate = 0.9, num_epochs = 5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;GPU = NVIDIA GeForce RTX 3050 4GB Laptop GPU&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Batch Size&lt;/th&gt;
+&lt;th&gt;Num Workers&lt;/th&gt;
+&lt;th&gt;Device&lt;/th&gt;
+&lt;th&gt;Time&lt;/th&gt;
+&lt;th&gt;Accuracy&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;GPU&lt;/td&gt;
+&lt;td&gt;53.6s&lt;/td&gt;
+&lt;td&gt;0.795&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;256&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;GPU&lt;/td&gt;
+&lt;td&gt;57.5s&lt;/td&gt;
+&lt;td&gt;0.635&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;GPU&lt;/td&gt;
+&lt;td&gt;1m05s&lt;/td&gt;
+&lt;td&gt;0.803&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;GPU&lt;/td&gt;
+&lt;td&gt;1m09s&lt;/td&gt;
+&lt;td&gt;0.822&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;16&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;GPU&lt;/td&gt;
+&lt;td&gt;1m20s&lt;/td&gt;
+&lt;td&gt;0.854&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;GPU&lt;/td&gt;
+&lt;td&gt;1m55s&lt;/td&gt;
+&lt;td&gt;0.856&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;256&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;GPU&lt;/td&gt;
+&lt;td&gt;1m55s&lt;/td&gt;
+&lt;td&gt;0.509&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;CPU&lt;/td&gt;
+&lt;td&gt;3m01s&lt;/td&gt;
+&lt;td&gt;0.852&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分析&#34;&gt;#&lt;/a&gt; 分析&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;过多的  &lt;code&gt;num workers&lt;/code&gt;  会导致效率下降，可能系硬盘资源占用过多（虚拟内存）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;batch size&lt;/code&gt;  增大，在训练轮数相同时，一定程度上降低预测准确率&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Time&lt;/code&gt;  存在瓶颈，不随  &lt;code&gt;batch size&lt;/code&gt;  增大一直增大，考虑系 数据加载的速度跟不上显卡处理的速度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;训练时遇到的问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#训练时遇到的问题&#34;&gt;#&lt;/a&gt; 训练时遇到的问题&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DataLoader worker exited unexpectedly&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Vscode 卡退  &lt;code&gt;oom&lt;/code&gt;   &lt;code&gt;crashed&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;显存不足&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;前两者主要为电脑内存不足导致，解决方法系 高级系统设置，调整虚拟内存（D 盘）&lt;/p&gt;
+&lt;p&gt;后者解决方法为使用较小的  &lt;code&gt;batch size&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;2024/08/07&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://mofianger.github.io/Machine-Learning/CNN/essential-knowledge-for-cnn-4682b25f0142/</guid>
+            <title>Essential knowledge for CNN</title>
+            <link>http://mofianger.github.io/Machine-Learning/CNN/essential-knowledge-for-cnn-4682b25f0142/</link>
+            <category term="Machine Learning" scheme="http://mofianger.github.io/categories/Machine-Learning/" />
+            <category term="CNN" scheme="http://mofianger.github.io/categories/Machine-Learning/CNN/" />
+            <pubDate>Wed, 07 Aug 2024 12:09:28 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;卷积层做了什么&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#卷积层做了什么&#34;&gt;#&lt;/a&gt; 卷积层做了什么&lt;/h1&gt;
+&lt;h2 id=&#34;平移不变性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#平移不变性&#34;&gt;#&lt;/a&gt; 平移不变性&lt;/h2&gt;
+&lt;p&gt;考虑检测某个图像特征的模型&lt;/p&gt;
+&lt;p&gt;当图像的特征经过平移后，理应对模型的结果影响不大&lt;/p&gt;
+&lt;p&gt;==&amp;gt; 对图像的每个位置应用 相同的 weights ==&amp;gt; 卷积核&lt;/p&gt;
+&lt;h2 id=&#34;局部性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#局部性&#34;&gt;#&lt;/a&gt; 局部性&lt;/h2&gt;
+&lt;p&gt;有时候我们只关注图像的局部特征，距离较远的图像应当对模型的输出影响较小&lt;/p&gt;
+&lt;p&gt;==&amp;gt; 考虑某个像素周围一定范围的图像&lt;/p&gt;
+&lt;p&gt;==&amp;gt; 卷积核的大小&lt;/p&gt;
+&lt;h2 id=&#34;运算&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#运算&#34;&gt;#&lt;/a&gt; 运算&lt;/h2&gt;
+&lt;p&gt;选取一个窗口，进行互相关运算&lt;/p&gt;
+&lt;p&gt;窗口大小即为卷积核（kernel_size）大小&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/essential-knowledge-for-cnn-4682b25f0142/correlation.svg&#34; class=&#34;&#34; title=&#34;correlation&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;conv2d&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#conv2d&#34;&gt;#&lt;/a&gt; Conv2d&lt;/h1&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Conv2d&lt;/span&gt;(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    in_channels: &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    out_channels: &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    kernel_size: _size_2_t,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    stride: _size_2_t = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    padding: _size_2_t | &lt;span class=&#34;built_in&#34;&gt;str&lt;/span&gt; = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    dilation: _size_2_t = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    groups: &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt; = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    bias: &lt;span class=&#34;built_in&#34;&gt;bool&lt;/span&gt; = &lt;span class=&#34;literal&#34;&gt;True&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    padding_mode: &lt;span class=&#34;built_in&#34;&gt;str&lt;/span&gt; = &lt;span class=&#34;string&#34;&gt;&amp;#x27;zeros&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    device: &lt;span class=&#34;type&#34;&gt;Any&lt;/span&gt; | &lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt; = &lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    dtype: &lt;span class=&#34;type&#34;&gt;Any&lt;/span&gt; | &lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt; = &lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;输入通道，输出通道&lt;/p&gt;
+&lt;p&gt;卷积核大小&lt;/p&gt;
+&lt;p&gt;步长与填充&lt;/p&gt;
+&lt;h1 id=&#34;channels&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#channels&#34;&gt;#&lt;/a&gt; Channels&lt;/h1&gt;
+&lt;p&gt;可理解为图像蕴含的某类特征，每个通道负责某种特征（但往往是所有通道共同使用识别特征，难以解释为某类具体的特征）&lt;/p&gt;
+&lt;p&gt;特征映射 -- feature maps&lt;/p&gt;
+&lt;p&gt;一般随着神经网络层数的加深，channels 数量增加，空间分辨率减小&lt;/p&gt;
+&lt;h1 id=&#34;padding&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#padding&#34;&gt;#&lt;/a&gt; Padding&lt;/h1&gt;
+&lt;p&gt;避免因卷积操作造成图像尺寸减小&lt;/p&gt;
+&lt;p&gt;一般为 (Kernel_size - 1) /2&lt;/p&gt;
+&lt;h1 id=&#34;stride&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#stride&#34;&gt;#&lt;/a&gt; Stride&lt;/h1&gt;
+&lt;p&gt;卷积核移动的步长&lt;/p&gt;
+&lt;h1 id=&#34;receptive-field&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#receptive-field&#34;&gt;#&lt;/a&gt; Receptive field&lt;/h1&gt;
+&lt;p&gt;感受野&lt;/p&gt;
+&lt;p&gt;对于某一层的某个元素 x，对 x 的计算造成可能影响的前面层的所有元素&lt;/p&gt;
+&lt;p&gt;（形象理解，某个位置能观测的图像范围）&lt;/p&gt;
+&lt;p&gt;一般随着网络加深，感受野增大，实现低层网络关注局部特征，高层网络关注全局特征的效果&lt;/p&gt;
+&lt;h1 id=&#34;pooling&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#pooling&#34;&gt;#&lt;/a&gt; Pooling&lt;/h1&gt;
+&lt;p&gt;汇聚层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;降低卷积层对位置的敏感性&lt;/li&gt;
+&lt;li&gt;降低对空间降采样的敏感性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;avgpool&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#avgpool&#34;&gt;#&lt;/a&gt; Avgpool&lt;/h2&gt;
+&lt;p&gt;每个窗口的平均值&lt;/p&gt;
+&lt;h2 id=&#34;maxpool&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#maxpool&#34;&gt;#&lt;/a&gt; Maxpool&lt;/h2&gt;
+&lt;p&gt;每个窗口的最大值&lt;/p&gt;
+&lt;h2 id=&#34;配合步长&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#配合步长&#34;&gt;#&lt;/a&gt; 配合步长&lt;/h2&gt;
+&lt;p&gt;常配合 stride 使用降低数据尺寸&lt;/p&gt;
+&lt;p&gt;2024/08/07&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://mofianger.github.io/Essay/%E9%9A%8F%E7%AC%94%E4%B9%8B%E4%BA%8C-825f2811f9ff/</guid>
+            <title>随笔之二</title>
+            <link>http://mofianger.github.io/Essay/%E9%9A%8F%E7%AC%94%E4%B9%8B%E4%BA%8C-825f2811f9ff/</link>
+            <category term="Essay" scheme="http://mofianger.github.io/categories/Essay/" />
+            <pubDate>Wed, 07 Aug 2024 12:02:49 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;有很多事情，只要开始做了，就会变得简单。&lt;/p&gt;
+&lt;p&gt;2024/08/07&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://mofianger.github.io/Tech/pandas%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4-bf8f7da942e9/</guid>
+            <title>Pandas常用指令</title>
+            <link>http://mofianger.github.io/Tech/pandas%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4-bf8f7da942e9/</link>
+            <category term="Tech" scheme="http://mofianger.github.io/categories/Tech/" />
+            <pubDate>Sat, 27 Jul 2024 11:09:04 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;整理了 pandas 库的常用指令&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;iloc 切片，索引&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(train_data.iloc[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;:&lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;, [&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, -&lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, -&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, -&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;]])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;concat 拼接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;all_features = pd.concat((train_data.iloc[:, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;:-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;], test_data.iloc[:, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;:]))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;处理数值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;numeric_features = all_features.dtypes[all_features.dtypes != &lt;span class=&#34;string&#34;&gt;&amp;#x27;object&amp;#x27;&lt;/span&gt;].index&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 获取所有 数值类 的特征的列名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# Index([&amp;#x27;MSSubClass&amp;#x27;, &amp;#x27;LotFrontage&amp;#x27;, ...])&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;all_features[numeric_features] = all_features[numeric_features].apply(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;lambda&lt;/span&gt; x: (x - x.mean()) / (x.std()))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 归一化处理，z-score&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 在标准化数据之后，所有均值消失，因此我们可以将缺失值设置为0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;all_features[numeric_features] = all_features[numeric_features].fillna(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;处理离散值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# One-hot encoding&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# “Dummy_na=True”将“na”（缺失值）视为有效的特征值，并为其创建指示符特征&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;all_features = pd.get_dummies(all_features, dummy_na=&lt;span class=&#34;literal&#34;&gt;True&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;all_features.shape&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;提取 numpy 并转换为 tensor&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;n_train = train_data.shape[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train_features = torch.tensor(all_features[:n_train].values, dtype=torch.float32)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;test_features = torch.tensor(all_features[n_train:].values, dtype=torch.float32)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train_labels = torch.tensor(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    train_data.SalePrice.values.reshape(-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;), dtype=torch.float32)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://mofianger.github.io/Tech/matplotlib%E5%B0%8F%E6%8A%80%E5%B7%A7-55f8e6d15c36/</guid>
             <title>matplotlib小技巧</title>
