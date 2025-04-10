@@ -10,8 +10,23 @@
         </author>
         <description></description>
         <language>en</language>
-        <pubDate>Wed, 07 Aug 2024 12:32:54 +0800</pubDate>
-        <lastBuildDate>Wed, 07 Aug 2024 12:32:54 +0800</lastBuildDate>
+        <pubDate>Fri, 11 Apr 2025 00:24:13 +0800</pubDate>
+        <lastBuildDate>Fri, 11 Apr 2025 00:24:13 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://mofianger.github.io/Tech/%E5%88%9D%E6%8E%A2verilog-85933bb24421/</guid>
+            <title>初探Verilog</title>
+            <link>http://mofianger.github.io/Tech/%E5%88%9D%E6%8E%A2verilog-85933bb24421/</link>
+            <category term="Tech" scheme="http://mofianger.github.io/categories/Tech/" />
+            <pubDate>Fri, 11 Apr 2025 00:24:13 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;介绍 Verilog 与基础语法，附带两个基础示例&lt;/p&gt;
+&lt;p&gt;于 BIT 睿信书院学生科技学会学术部分享&lt;/p&gt;
+&lt;p&gt;如果以下 pdf 预览不能正常加载，戳&lt;a href=&#34;/pdf/Verilog.pdf&#34;&gt;这里&lt;/a&gt;下载&lt;/p&gt;
+&lt;p&gt;
+&lt;iframe src=&#34;/pdfjs/web/viewer.html?file=/pdf/Verilog.pdf&#34; style=&#39;width:100%;height:800px&#39;&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://mofianger.github.io/Machine-Learning/CNN/lenet-be251f896e73/</guid>
             <title>LeNet</title>
@@ -25,6 +40,7 @@
 &lt;h1 id=&#34;数据集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据集&#34;&gt;#&lt;/a&gt; 数据集&lt;/h1&gt;
 &lt;p&gt;&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;train_iter, test_iter = d2l.load_data_fashion_mnist(batch_size=b, num_workers=n)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h1 id=&#34;效率评估&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#效率评估&#34;&gt;#&lt;/a&gt; 效率评估&lt;/h1&gt;
+&lt;h2 id=&#34;实验数据&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实验数据&#34;&gt;#&lt;/a&gt; 实验数据&lt;/h2&gt;
 &lt;p&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;learning rate = 0.9, num_epochs = 5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;GPU = NVIDIA GeForce RTX 3050 4GB Laptop GPU&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -93,37 +109,56 @@
 &lt;td&gt;3m01s&lt;/td&gt;
 &lt;td&gt;0.852&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h1 id=&#34;分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分析&#34;&gt;#&lt;/a&gt; 分析&lt;/h1&gt;
+&lt;h2 id=&#34;分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#分析&#34;&gt;#&lt;/a&gt; 分析&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;过多的  &lt;code&gt;num workers&lt;/code&gt;  会导致效率下降，可能系硬盘资源占用过多（虚拟内存）&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;batch size&lt;/code&gt;  增大，在训练轮数相同时，一定程度上降低预测准确率&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Time&lt;/code&gt;  存在瓶颈，不随  &lt;code&gt;batch size&lt;/code&gt;  增大一直增大，考虑系 数据加载的速度跟不上显卡处理的速度&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Batch size&lt;/code&gt; =256, 64 时  &lt;code&gt;accuracy&lt;/code&gt;  较低，可能是因为训练轮数较少，尚未收敛&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;训练时遇到的问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#训练时遇到的问题&#34;&gt;#&lt;/a&gt; 训练时遇到的问题&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;DataLoader worker exited unexpectedly&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Vscode 卡退  &lt;code&gt;oom&lt;/code&gt;   &lt;code&gt;crashed&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;显存不足&lt;/li&gt;
+&lt;li&gt;训练卡死，长时间保持在一个进度&lt;/li&gt;
+&lt;li&gt;训练结束后仍占用 GPU 资源 (~1500MB)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;前两者主要为电脑内存不足导致，解决方法系 高级系统设置，调整虚拟内存（D 盘）&lt;/p&gt;
-&lt;p&gt;后者解决方法为使用较小的  &lt;code&gt;batch size&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;2024/08/07&lt;/p&gt;
+&lt;p&gt;3 解决方法为使用较小的  &lt;code&gt;batch size&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;4 尚不清楚原因（锁死？GPU 缓存？），解决方法为重启内核&lt;/p&gt;
+&lt;p&gt;5 会带来什么影响吗，会影响接下来的训练吗，是否需要重启内核或者 &lt;code&gt;torch.cuda.empty_cache()&lt;/code&gt;  呢&lt;/p&gt;
+&lt;p&gt;并且 &lt;code&gt;torch.cuda.empty_cache()&lt;/code&gt;  后还会有显存占用，貌似是因为 &lt;code&gt;load_data_fashion_mnist&lt;/code&gt;  默认使用 &lt;code&gt;device&lt;/code&gt;  为 &lt;code&gt;cuda:0&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;修改网络架构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#修改网络架构&#34;&gt;#&lt;/a&gt; 修改网络架构&lt;/h1&gt;
+&lt;h2 id=&#34;将所有sigmoid改为relu&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#将所有sigmoid改为relu&#34;&gt;#&lt;/a&gt; 将所有 sigmoid 改为 ReLU&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/image-20240807161441765.png&#34; class=&#34;&#34; title=&#34;image-20240807161441765&#34;&gt;&lt;/p&gt;
+&lt;p&gt;保持训练条件  &lt;code&gt;lr&lt;/code&gt;  = 0.9,  &lt;code&gt;num_epochs&lt;/code&gt;  = 5 不变，发现：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;train acc&lt;/code&gt;  和 &lt;code&gt;test acc&lt;/code&gt;  均只有 0.1， &lt;code&gt;Loss&lt;/code&gt;  相当大，这与未经训练随机猜没有区别，&lt;/p&gt;
+&lt;p&gt;模型出现欠拟合可能是由学习率过大引发梯度爆炸所致&lt;/p&gt;
+&lt;p&gt;将  &lt;code&gt;lr &lt;/code&gt; 由 0.9 修改为 0.1 后，准确率显著提升，达到 0.84~0.85&lt;/p&gt;
+&lt;p&gt;经过 10 轮训练， &lt;code&gt;loss&lt;/code&gt;  0.290,  &lt;code&gt;train acc&lt;/code&gt;  0.891,  &lt;code&gt;test acc&lt;/code&gt;  0.867&lt;/p&gt;
+&lt;h2 id=&#34;使用-maxpool&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#使用-maxpool&#34;&gt;#&lt;/a&gt; 使用 MaxPool&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/image-20240807170351785.png&#34; class=&#34;&#34; title=&#34;image-20240807170351785&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lr&lt;/code&gt;  = 0.1,  &lt;code&gt;num_epochs&lt;/code&gt;  = 10&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;loss&lt;/code&gt;  0.261,  &lt;code&gt;train acc&lt;/code&gt;  0.902,  &lt;code&gt;test acc&lt;/code&gt;  0.885&lt;/p&gt;
+&lt;p&gt;效果略有提升&lt;/p&gt;
+&lt;p&gt;补充：又进行了几次实验，发现  &lt;code&gt;lr&lt;/code&gt;  = 0.1 还是有概率出现（梯度爆炸）欠拟合情况，故设置  &lt;code&gt;lr&lt;/code&gt;  = 0.05&lt;/p&gt;
+&lt;h3 id=&#34;可视化卷积层结果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#可视化卷积层结果&#34;&gt;#&lt;/a&gt; 可视化卷积层结果&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/1.svg&#34; class=&#34;&#34; width=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/2.svg&#34; class=&#34;&#34; width=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/3.svg&#34; class=&#34;&#34; width=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;对比-原始-lenet-b64-n2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#对比-原始-lenet-b64-n2&#34;&gt;#&lt;/a&gt; 对比 原始 LeNet (b=64, n=2)&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/4.svg&#34; class=&#34;&#34; width=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/5.svg&#34; class=&#34;&#34; width=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;更多的结果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#更多的结果&#34;&gt;#&lt;/a&gt; 更多的结果&lt;/h3&gt;
+&lt;p&gt;第一个 ReLU 层的 6 个通道&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/6.svg&#34; class=&#34;&#34; width=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;第二个 ReLU 层的 16 个通道&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/Machine-Learning/CNN/lenet-be251f896e73/7.svg&#34; class=&#34;&#34; width=&#34;7&#34;&gt;&lt;/p&gt;
+&lt;p&gt;First written 2024/08/07&lt;/p&gt;
+&lt;p&gt;Last updated 2024/08/08&lt;/p&gt;
  ]]></description>
         </item>
         <item>
