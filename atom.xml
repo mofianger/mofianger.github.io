@@ -8,7 +8,52 @@
     <author>
       <name>Mofianger</name>
     </author>
-    <updated>2025-09-12T07:44:52.137Z</updated>
+    <updated>2025-09-12T16:00:00.000Z</updated>
+    <entry>
+        <id>http://mofianger.github.io/%E8%8D%89%E7%A8%BF/dac2025-paroattention/</id>
+        <title>DAC2025-ParoAttention</title>
+        <link rel="alternate" href="http://mofianger.github.io/%E8%8D%89%E7%A8%BF/dac2025-paroattention/"/>
+        <content type="html">&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9uaWNzZWZjLmVlLnRzaW5naHVhLmVkdS5jbi9uaWNzX2ZpbGUvcGRmL2E0OTYwMjA5LWM0NmMtNGE3OC1hY2ViLTFlYTc1NmE1ZmRhYy5wZGY=&#34;&gt;PARO&lt;/span&gt;&lt;/p&gt;
+&lt;h1 id=&#34;基础知识&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基础知识&#34;&gt;#&lt;/a&gt; 基础知识&lt;/h1&gt;
+&lt;h2 id=&#34;cogvideo&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cogvideo&#34;&gt;#&lt;/a&gt; CogVideo&lt;/h2&gt;
+&lt;p&gt;3D full attention：把视频的每一帧都 concat 起来&lt;/p&gt;
+&lt;h1 id=&#34;paper&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#paper&#34;&gt;#&lt;/a&gt; Paper&lt;/h1&gt;
+&lt;p&gt;Main idea: 对 Attention Map 中出现的对角线结构进行重排序（reorder），按照 block 进行量化，以减少量化精度的损失&lt;/p&gt;
+&lt;p&gt;主要的技术：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Reoder&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;出现对角线的原因&lt;/li&gt;
+&lt;li&gt;对 QK 进行 reorder - 计算出 O - 恢复 reorder&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msubsup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A_3^2=6&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.0622159999999998em;vertical-align:-0.24810799999999997em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-2.4518920000000004em;margin-left:0em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.24810799999999997em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.64444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，6 种 reorder 方案，对于不同的 QK 选择哪一种？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每一个 block 的量化精度的选择：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Block importance：block 平均的数值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Quantization Difficulty：使用 quantization error（如何计算）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;整数规划，求解 integer programming problem&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;前导 0（LDZ）：选最高位的 1，乘法之后再移位回去&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Todo：研究一下每一部分的计算复杂度，以及改进后的计算复杂度&lt;/p&gt;
+&lt;p&gt;Q：怎么保证 block 的量化精度的选择是固定的呢？也就是说不会随着输入的不同而变化&lt;/p&gt;
+</content>
+        <category term="读论文" scheme="http://mofianger.github.io/categories/%E8%AF%BB%E8%AE%BA%E6%96%87/" />
+        <category term="草稿" scheme="http://mofianger.github.io/categories/%E8%8D%89%E7%A8%BF/" />
+        <updated>2025-09-12T16:00:00.000Z</updated>
+    </entry>
     <entry>
         <id>http://mofianger.github.io/uncategorized/about-me/</id>
         <title>About me</title>
@@ -1047,39 +1092,5 @@ FMC_BWTR 写时序寄存器与 FMC_BTR 寄存器控制的参数类似，它专�
 </content>
         <category term="Tech" scheme="http://mofianger.github.io/categories/Tech/" />
         <updated>2024-07-22T11:32:22.802Z</updated>
-    </entry>
-    <entry>
-        <id>http://mofianger.github.io/Essay/%E4%B8%80%E7%AF%87%E9%9A%8F%E7%AC%94/</id>
-        <title>一篇随笔</title>
-        <link rel="alternate" href="http://mofianger.github.io/Essay/%E4%B8%80%E7%AF%87%E9%9A%8F%E7%AC%94/"/>
-        <content type="html">&lt;p&gt;我有好多想做的事情，&lt;/p&gt;
-&lt;p&gt;无时无刻不，都有好多想做的事情&lt;/p&gt;
-&lt;p&gt;但是有的时候，&lt;/p&gt;
-&lt;p&gt;却没有动力，真正做下去。&lt;/p&gt;
-&lt;p&gt;啊心情，&lt;/p&gt;
-&lt;p&gt;阴晴不定，&lt;/p&gt;
-&lt;p&gt;时而高涨，时而忧郁&lt;/p&gt;
-&lt;p&gt;啊视线，&lt;/p&gt;
-&lt;p&gt;飘忽不定，&lt;/p&gt;
-&lt;p&gt;看那花儿，悠然飘零&lt;/p&gt;
-&lt;p&gt;啊，啊，啊啊啊&lt;/p&gt;
-&lt;p&gt;明明内心啊，有使不完的劲&lt;/p&gt;
-&lt;p&gt;可是为何，始终无法平静&lt;/p&gt;
-&lt;p&gt;明明步子啊，从未停息，&lt;/p&gt;
-&lt;p&gt;可是为何，方向不定&lt;/p&gt;
-&lt;p&gt;啊，熟悉的感觉，渐渐来袭&lt;/p&gt;
-&lt;p&gt;停不下来的思绪，渐渐涌起&lt;/p&gt;
-&lt;p&gt;明明内心，无比抗拒，&lt;/p&gt;
-&lt;p&gt;可即使如此，亦无能为力&lt;/p&gt;
-&lt;p&gt;思绪的漩涡，漩涡&lt;/p&gt;
-&lt;p&gt;漩涡，漩涡&lt;/p&gt;
-&lt;p&gt;不断地搅拌，晃动，&lt;/p&gt;
-&lt;p&gt;任一切支离破碎。&lt;/p&gt;
-&lt;p&gt;我真的，真的&lt;/p&gt;
-&lt;p&gt;有好多想做的事情。&lt;/p&gt;
-&lt;p&gt;2024/07/22&lt;/p&gt;
-</content>
-        <category term="Essay" scheme="http://mofianger.github.io/categories/Essay/" />
-        <updated>2024-07-22T10:55:59.530Z</updated>
     </entry>
 </feed>
