@@ -36,15 +36,15 @@
         <updated>2025-09-13T16:00:00.000Z</updated>
     </entry>
     <entry>
-        <id>http://mofianger.github.io/%E8%8D%89%E7%A8%BF/dac2025-paroattention/</id>
+        <id>http://mofianger.github.io/%E8%AF%BB%E8%AE%BA%E6%96%87/dac2025-paroattention/</id>
         <title>DAC2025-ParoAttention</title>
-        <link rel="alternate" href="http://mofianger.github.io/%E8%8D%89%E7%A8%BF/dac2025-paroattention/"/>
+        <link rel="alternate" href="http://mofianger.github.io/%E8%AF%BB%E8%AE%BA%E6%96%87/dac2025-paroattention/"/>
         <content type="html">&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9uaWNzZWZjLmVlLnRzaW5naHVhLmVkdS5jbi9uaWNzX2ZpbGUvcGRmL2E0OTYwMjA5LWM0NmMtNGE3OC1hY2ViLTFlYTc1NmE1ZmRhYy5wZGY=&#34;&gt;PARO&lt;/span&gt;&lt;/p&gt;
 &lt;h1 id=&#34;基础知识&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基础知识&#34;&gt;#&lt;/a&gt; 基础知识&lt;/h1&gt;
-&lt;h2 id=&#34;cogvideo&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cogvideo&#34;&gt;#&lt;/a&gt; CogVideo&lt;/h2&gt;
-&lt;p&gt;3D full attention：把视频的每一帧都 concat 起来&lt;/p&gt;
-&lt;p&gt;多头自注意力 multi-head self-attention&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;/%E8%8D%89%E7%A8%BF/dac2025-paroattention/image-20250914110902243.png&#34; class=&#34;&#34; title=&#34;image-20250914110902243&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cogvideo-transformer&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cogvideo-transformer&#34;&gt;#&lt;/a&gt; CogVideo &amp;amp; Transformer&lt;/h2&gt;
+&lt;p&gt;CogVideo 采用了 3D full attention：把视频的每一帧都 concat 起来&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/%E8%AF%BB%E8%AE%BA%E6%96%87/dac2025-paroattention/image-20250914110902243.png&#34; class=&#34;&#34; title=&#34;CogVideo的Tramsformer Block&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;self-attention单个head&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#self-attention单个head&#34;&gt;#&lt;/a&gt; Self-Attention（单个 head）&lt;/h3&gt;
 &lt;p&gt;X ~ [N, d] ---Linear---&amp;gt; Q, K, V ~ [N, d]&lt;/p&gt;
 &lt;p&gt;Attention Map: Attn = Softmax(Q*K / sqrt(d)) ~ [N, N]&lt;/p&gt;
 &lt;p&gt;Output: O = Attn*V ~ [N,d]&lt;/p&gt;
@@ -56,55 +56,87 @@
 &lt;li&gt;Output：[N, N] 与 [N, d] 相乘 O (N^2d)&lt;/li&gt;
 &lt;li&gt;FNN：[N, d] 与 [d, d] 相乘 O (Nd^2)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;blocks 和 heads 的概念&lt;/p&gt;
-&lt;p&gt;attention head&lt;/p&gt;
-&lt;p&gt;Transformer&lt;/p&gt;
-&lt;p&gt;attention map 的意义&lt;/p&gt;
+&lt;h3 id=&#34;multi-head-self-attention&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#multi-head-self-attention&#34;&gt;#&lt;/a&gt; multi-head self-attention&lt;/h3&gt;
+&lt;p&gt;把 d 均分为多份，每一份经过一个独立的 head，最后的结果拼接起来重新得到 d，再经过一个线性层&lt;/p&gt;
+&lt;p&gt;复杂度与 single-head 是一致的&lt;/p&gt;
+&lt;p&gt;Transformer block：包含了 MHA FNN 残差连接 LayerNorm&lt;/p&gt;
+&lt;p&gt;head：MHA 中的单个注意力分支，有独立的 Q K V 权重矩阵&lt;/p&gt;
+&lt;h2 id=&#34;量化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#量化&#34;&gt;#&lt;/a&gt; 量化&lt;/h2&gt;
+&lt;p&gt;W8A8：Weight and Activation 均量化到 8bits&lt;/p&gt;
+&lt;p&gt;量化方法：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/%E8%AF%BB%E8%AE%BA%E6%96%87/dac2025-paroattention/image-20250915110852910.png&#34; class=&#34;&#34; title=&#34;量化公式1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/%E8%AF%BB%E8%AE%BA%E6%96%87/dac2025-paroattention/image-20250915110902579.png&#34; class=&#34;&#34; title=&#34;量化公式2&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;paper&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#paper&#34;&gt;#&lt;/a&gt; Paper&lt;/h1&gt;
-&lt;p&gt;Main idea: 对 Attention Map 中出现的对角线结构进行重排序（reorder），按照 block 进行量化（每一个 block 有一个量化精度），以减少量化精度的损失&lt;/p&gt;
-&lt;p&gt;主要的技术：&lt;/p&gt;
+&lt;p&gt;Main idea: 对 Attention Map 中出现的&lt;strong&gt;对角线结构&lt;/strong&gt;进行重排序（reorder），按照 block 进行量化（每一个 block 有一个量化精度）&lt;/p&gt;
+&lt;p&gt;主要技术：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Reoder&lt;/p&gt;
+&lt;p&gt;Reorder&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;出现对角线的原因：local aggregation -- 感觉可以进一步探究&lt;/li&gt;
-&lt;li&gt;对 QK 进行 reorder - 进行后续的计算 - 对 output 恢复 reorder&lt;/li&gt;
-&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msubsup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A_3^2=6&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.0622159999999998em;vertical-align:-0.24810799999999997em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-2.4518920000000004em;margin-left:0em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.24810799999999997em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.64444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，6 种 reorder 方案，对于不同的 QK 选择哪一种？
+&lt;li&gt;为什么会有对角线的 pattern：local aggregation 3D full attention 把 frame height width 拼接在一起
 &lt;ul&gt;
-&lt;li&gt;offline 预先决定好&lt;/li&gt;
+&lt;li&gt;感觉可以进一步探究每一种对角线的 pattern 在什么情况下会出现，具有什么意义&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;对 QK 进行 reorder（嵌入向量 d） - 矩阵乘法后自然 reorder - 对最终计算的 output 恢复 reorder 前的顺序&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msubsup&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mn&gt;3&lt;/mn&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msubsup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;A_3^2=6&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.0622159999999998em;vertical-align:-0.24810799999999997em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-2.4518920000000004em;margin-left:0em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.24810799999999997em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.64444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，一共有 3 个维度（frame height width），进行置换（permute），一共有 6 种 reorder 方案，对于不同的 QK（一个 head）选择哪一种呢？
+&lt;ul&gt;
+&lt;li&gt;offline 预先决定好（应该指的是人工确定好方案）&lt;/li&gt;
 &lt;li&gt;因为观察到 attention head 中的 pattern 基本不会变化&lt;/li&gt;
-&lt;li&gt;也就是说每个 head 的 reorder 方案可以被唯一确定&lt;/li&gt;
+&lt;li&gt;也就是说每个 head 的 reorder 方案可以提前被唯一确定&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;每一个 block 的量化精度的选择：&lt;/p&gt;
+&lt;p&gt;如何确定每个 block 的量化精度：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Block importance：block 平均的数值&lt;/p&gt;
+&lt;p&gt;论文中量化了 “Quantization sensitivity” 这一指标，由 Block Importance 和 Quantization Difficulty 两个指标刻画&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Quantization Difficulty：使用 quantization error（如何计算）&lt;/p&gt;
+&lt;p&gt;Block Importance：Block 平均的数值，决定了这个 block 对于 attention map 的重要性&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;整数规划，求解 integer programming problem&lt;/p&gt;
+&lt;p&gt;Quantization Difficulty：量化的难度，由量化误差决定（quantization error）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于每个 block，我们希望能得到一个量化的位数，论文中预设了一个&lt;strong&gt; average bitwidth budget&lt;/strong&gt; 即位宽的预算，然后求解整数规划问题，即求解 integer programming problem&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;设计了新的混合精度的处理单元，能够同时加速 QK, AttnV 的计算&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;前导 0（LDZ）：选最高位的 1，乘法之后再移位回去&lt;/p&gt;
+&lt;p&gt;PE 单元，被设计用于同时加速 QK, AttnV 的计算&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PE 可以执行 2 * 8, 4 * 8, 8 * 8 的运算&lt;/li&gt;
+&lt;li&gt;AttnV：Attn 是混合精度量化的一个 attention map，V 是 8 位量化&lt;/li&gt;
+&lt;li&gt;QK：QK 是 8 位量化，QK 经过 Softmax 后需要进行混合精度的量化
+&lt;ul&gt;
+&lt;li&gt;引出一个问题：貌似对 QK 进行 8bit 计算有些浪费了，能不能计算的时候使用低一些的位宽&lt;/li&gt;
+&lt;li&gt;解决方案：根据 Attn 的量化方案，相应地选择 K 中的若干位（2, 4, 8）与 8 位的 Q 进行计算&lt;/li&gt;
+&lt;li&gt;如何选择 K 中的若干位？前导 0（LDZ Unit）：以正数为例，找到最高位的 1，选择一定位数，之后的计算再左移回去&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Todo：研究一下每一部分的计算复杂度，以及改进后的计算复杂度&lt;/p&gt;
-&lt;p&gt;Q：怎么保证 block 的量化精度的选择是固定的呢？也就是说不会随着输入的不同而变化&lt;/p&gt;
-&lt;p&gt;Q：不同精度在硬件上的计算有什么区别呢？&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img data-src=&#34;/%E8%AF%BB%E8%AE%BA%E6%96%87/dac2025-paroattention/image-20250915104946098.png&#34; class=&#34;&#34; title=&#34;Paro硬件架构图&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;dispatcher：起调度的作用，用于平衡 blocks 间的工作负载（workload）（很好奇具体是怎么工作的）&lt;/li&gt;
+&lt;li&gt;ablation study：消融实验，论文中用于评估方法的每一改进部分的提升效果&lt;/li&gt;
+&lt;li&gt;cycle-accurate simulator&lt;/li&gt;
+&lt;li&gt;评估指标：
+&lt;ul&gt;
+&lt;li&gt;FVD-FP16：保真度 fidelity，通过量化前后的 feature space difference 评估&lt;/li&gt;
+&lt;li&gt;CLIPSIM：text-video alignment&lt;/li&gt;
+&lt;li&gt;CLIP-Temp：每一帧之间 clip feature 的一致性（consistency）&lt;/li&gt;
+&lt;li&gt;VQA：aesthetic 和 technical 角度对视频质量的评估&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Q：每一个 block 的大小怎么确定&lt;/p&gt;
 </content>
         <category term="读论文" scheme="http://mofianger.github.io/categories/%E8%AF%BB%E8%AE%BA%E6%96%87/" />
-        <category term="草稿" scheme="http://mofianger.github.io/categories/%E8%8D%89%E7%A8%BF/" />
         <updated>2025-09-12T16:00:00.000Z</updated>
     </entry>
     <entry>
